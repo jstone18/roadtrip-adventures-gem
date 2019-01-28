@@ -2,7 +2,8 @@ class RoadtripAdventures::CLI
 
   def call
     list_destinations
-
+    RoadtripAdventures::Destination.list_destination_names
+    dest_menu
   end
 
   def list_destinations
