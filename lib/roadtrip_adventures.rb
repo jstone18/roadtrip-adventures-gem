@@ -1,5 +1,6 @@
 require "nokogiri"
 require "open-uri"
+require "pry"
 
 require_relative "./roadtrip_adventures/version"
 require_relative "./roadtrip_adventures/cli"
