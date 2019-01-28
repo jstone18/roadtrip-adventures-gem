@@ -27,7 +27,11 @@
             @@all_destinations << new_destination
         end
           }
-        puts @@all_destinations
+    end
+
+    def self.list_destination_names
+      self.scrape_destinations
+      @@all_destinations.map.with_index{|d, i| puts "#{i+1} #{d.name}" }
     end
 
   end
