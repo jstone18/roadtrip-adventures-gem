@@ -3,7 +3,7 @@ class RoadtripAdventures::CLI
   def call
     welcome
     list_destinations
-    menu
+    dest_menu
   end
 
   def welcome
@@ -12,35 +12,45 @@ class RoadtripAdventures::CLI
 
   def list_destinations
     puts "Choose the destination you'd like to explore further."
+    puts "********************************************************"
     RoadtripAdventures::Destination.list_destination_names
     puts "********************************************************"  # Divider
   end
 
-  def menu
-    input = nil
+  def dest_menu
+    dest_select = nil
 
-    while input != "exit"
-      puts "Make a selection from 1-10"
-      input = gets.strip.to_i
+    puts "Make a selection from 1-10:"
+    dest_select = gets.strip
 
-      if input > 0 && input < 11
-        puts "********************************************************"
+    while dest_select != "exit"
+
+      if dest_select.to_i > 0 && dest_select.to_i < 11
 
         puts "These are the Top 6 adventures!"
-        puts RoadtripAdventures::Adventure.list_adventure_names[input-1]
+        puts "********************************************************"
+        puts RoadtripAdventures::Adventure.list_adventure_names[dest_select.to_i-1]
+        puts "********************************************************"
+        adv_menu
 
-        puts "Which adventure would you like more information for? 1 - 6"
-        input = gets.strip.to_i
       else
-        puts "You've made an invalid choice! Please try again or 'exit' to leave"
+        puts "You've made an invalid choice! Make a selection from 1-10 or 'exit' to leave"
+        dest_select = gets.strip
       end
     end
+    goodbye
+  end
+
+  def adv_menu
+    puts "Which adventure would you like more information about? 1 - 6"
+    adv_input = gets.strip
+
   end
 
 
 
   def goodbye
-    puts "So long!! May your journey be filled with new adventures and excitement"
+    puts "So long!! May your journey be filled with new adventures and excitement!!"
   end
 
 end
