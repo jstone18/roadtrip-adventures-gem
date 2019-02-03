@@ -27,14 +27,16 @@ class RoadtripAdventures::CLI
       if input > 0 && input < 11
         puts "********************************************************"
         destination_name = destination_arr[input-1].name.strip
-        puts "Here are the top 6 adventures for #{destination_name.upcase}\n"
+        destination_url = destination_arr[input-1].url
+        puts "Here are the top 6 adventures for #{destination_name}\n"
         list_adventures(destination_name)
       else
         puts "You've made an invalid choice! Make a selection from 1-10 or 'exit' to leave"
         input = gets.strip
       end
-      goodbye if input === "exit"
     end
+    goodbye if input == "exit"
+
   end
 
   def list_adventures(destination_name)
@@ -44,6 +46,7 @@ class RoadtripAdventures::CLI
     puts adventure_arr.map.with_index{|d, index| "\t#{index+1}. #{d.name}, #{d.price}"}
     puts "********************************************************"
     puts "Please choose another destination 1-10 or 'exit' to leave."
+
   end
 
   def goodbye
