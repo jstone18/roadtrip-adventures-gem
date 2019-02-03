@@ -46,7 +46,6 @@ class RoadtripAdventures::CLI
     puts adventure_arr.map.with_index{|d, index| "\t#{index+1}. #{d.name}, #{d.price}"}
     puts "********************************************************"
     puts "Please choose another destination 1-10 or 'exit' to leave."
-
   end
 
   def goodbye
