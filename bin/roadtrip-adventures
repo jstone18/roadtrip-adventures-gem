@@ -5,3 +5,4 @@ require "./lib/roadtrip_adventures"
 
 
 RoadtripAdventures::CLI.new.call
+# RoadtripAdventures::CLI.new.start
