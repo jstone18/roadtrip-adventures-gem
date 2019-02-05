@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    roadtrip_adventures (0.1.0)
+    roadtrip_adventures (0.2.0)
       colorize
       nokogiri
 
