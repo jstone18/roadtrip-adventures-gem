@@ -4,6 +4,7 @@ class RoadtripAdventures::CLI
     welcome
     RoadtripAdventures::Scraper.scrape_destinations
     list_destinations
+    select_destination
   end
 
   def welcome
@@ -12,33 +13,32 @@ class RoadtripAdventures::CLI
 
   def list_destinations
      puts "**********DESTINATIONS**********\n".colorize(:blue)
-     destination_arr = RoadtripAdventures::Destination.all
-     puts  destination_arr.map.with_index{|destination, index| "\t#{index+1}. #{destination.name}"}
+     @destination_arr = RoadtripAdventures::Destination.all
+     puts  @destination_arr.map.with_index{|destination, index| "\t#{index+1}. #{destination.name}"}
      puts "\n********************************".colorize(:blue)
      puts "Select a destination from 1-10:".colorize(:yellow)
      puts "********************************".colorize(:blue)
-     select_destination(destination_arr)
   end
 
-  def select_destination(destination_arr)
+  def select_destination
     input = nil
 
     while input != 'exit'
-      input = gets.to_i
-
-      if input > 0 && input < 11
-        destination_name = destination_arr[input-1].name.strip
-        destination_url = destination_arr[input-1].url
-        # puts "\nHere are the top 6 adventures for #{destination_name}\n".colorize(:yellow)
+      input = gets.strip
+      if input.to_i > 0 && input.to_i < 11
+        destination_name = @destination_arr[input.to_i-1].name.strip
+        destination_url = @destination_arr[input.to_i-1].url
         puts "******************** ".colorize(:blue) + "#{destination_name.upcase} ADVENTURES".colorize(:yellow) + " ********************\n".colorize(:blue)
         list_adventures(destination_name)
         puts "**********************************************************".colorize(:blue)
-      else
+      elsif input != 'exit'
         puts "You've made an invalid choice! Make a selection from 1-10 or 'exit' to leave".colorize(:light_blue)
+        list_destinations
         input = gets.strip
+
       end
     end
-    goodbye if input == "exit"
+    goodbye
   end
 
   def list_adventures(destination_name)
