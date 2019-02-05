@@ -34,7 +34,7 @@ class RoadtripAdventures::CLI
       elsif input != 'exit'
         puts "You've made an invalid choice! Make a selection from 1-10 or 'exit' to leave".colorize(:light_blue)
         list_destinations
-        input = gets.strip
+        # input = gets.strip
 
       end
     end

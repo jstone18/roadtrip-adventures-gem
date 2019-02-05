@@ -8,9 +8,10 @@ class RoadtripAdventures::Scraper
     if index < 10 then
       new_destination = RoadtripAdventures::Destination.new
       new_destination.name = destinations[index].text
-      new_destination.url = "https://www.lonelyplanet.com" + destinations[index].attr("href")      
+      new_destination.url = "https://www.lonelyplanet.com" + destinations[index].attr("href")
     end
     }
   end
+
 
 end
